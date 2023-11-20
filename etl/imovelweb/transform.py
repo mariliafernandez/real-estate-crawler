@@ -7,6 +7,12 @@ def get_price_condo(text):
         return int(match.group().replace('.', ''))
     return None
 
+def get_bath(text):
+    match = re.search('\d ban', text)
+    if match:
+        return int(re.search('\d ban', text).group().split()[0])
+    return None
+
 def get_room(text):
     match = re.search('\d quartos?', text)
     if match:
@@ -34,6 +40,7 @@ df.drop(columns=['areas'], inplace=True)
 
 df['room'] = df['features'].apply(get_room)
 df['garage'] = df['features'].apply(get_garage)
+df['bathroom'] = df['features'].apply(get_bath)
 
 df['url'] = df['url'].apply(lambda x:'https://www.imovelweb.com.br'+x)
 

@@ -9,6 +9,10 @@ beautifulsoup4 = "*"
 selenium = "*"
 webdriver-manager = "*"
 pandas = "*"
+django = "*"
+djongo = "1.3.6"
+pytz = "*"
+pymongo = "==3.12.3"
 
 [dev-packages]
 

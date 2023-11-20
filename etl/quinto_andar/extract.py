@@ -29,12 +29,12 @@ while btn and i < LOAD_MORE:
     btn = driver.find_element(By.XPATH, '//button[@aria-label="Ver mais"]')
     i += 1
 
-# Save html page w/ all content 
-with open('page_source.html', 'w') as f:
+# Save html page w/ all content
+with open("page_source.html", "w") as f:
     f.write(html)
 
 
-# Read html page, scrap data and stores it in json file 
+# Read html page, scrap data and stores it in json file
 soup = BeautifulSoup(html, "html.parser")
 cards = soup.find_all(class_="MuiCard-root")
 
@@ -60,8 +60,8 @@ for card in cards:
         card.find(attrs={"data-testid": "house-card-bedrooms"})
     )
 
-    price = scrapper.get_element_text(
-        card.find(attrs={"data-testid": "house-card-rent"})
+    prices = scrapper.get_element_text(
+        card.find(attrs={"data-testid": "house-card-footer-rent"})
     )
 
     records.append(
@@ -72,7 +72,7 @@ for card in cards:
             "region": region,
             "area": area,
             "bedroom": bedroom,
-            "price": price,
+            "total": prices,
         }
     )
 
